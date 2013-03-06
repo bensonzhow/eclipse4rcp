@@ -21,25 +21,24 @@ public class PlaygroundPart {
 	private Control focus;
 	private Text text;
 	private Button btnSearch;
+	private Text target;
 
 	@PostConstruct
 	public void createControls(Composite parent, IBundleResourceLoader loader) {
-		parent.setLayout(new GridLayout(5, false));
+		parent.setLayout(new GridLayout(2, false));
 
 		text = new Text(parent, SWT.BORDER);
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-
-		btnSearch = new Button(parent, SWT.NONE);
-		btnSearch.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
-				false, 1, 1));
-		btnSearch.setText("Search");
-		new Label(parent, SWT.NONE);
-		new Label(parent, SWT.NONE);
 
 		label = new Label(parent, SWT.NONE);
 		label.setImage(loader.loadImage(this.getClass(), "images/vogella.png"));
 
 		focus = text;
+		
+		target = new Text(parent, SWT.BORDER);
+		target.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		
+
 	}
 
 	@PreDestroy
