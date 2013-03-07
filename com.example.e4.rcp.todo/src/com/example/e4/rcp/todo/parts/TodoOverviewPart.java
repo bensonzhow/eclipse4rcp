@@ -1,12 +1,20 @@
 package com.example.e4.rcp.todo.parts;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.inject.Inject;
 
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.e4.ui.di.Focus;
-import org.eclipse.jface.viewers.ArrayContentProvider;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
+import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
+import org.eclipse.jface.databinding.viewers.ViewerSupport;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
@@ -28,23 +36,27 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
 	@Inject
+	ESelectionService selectionService;
+	@Inject
 	private ITodoModel model;
 	private TableViewer viewer;
 	private String searchString = "";
+	private WritableList writableList;
+	private Button btnUpdate;
 
 	@PostConstruct
-	public void createControls(Composite parent) {
+	public void createControls(Composite parent, EMenuService menuService) {
 		parent.setLayout(new GridLayout(1, false));
 
-		Button btnUpdate = new Button(parent, SWT.NONE);
+		btnUpdate = new Button(parent, SWT.NONE);
 		btnUpdate.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
 				false, 1, 1));
 		btnUpdate.setText("Update");
-
 		btnUpdate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				viewer.setInput(model.getTodos());
+				List<Todo> todos = model.getTodos();
+				updateviewer(todos);
 			}
 		});
 
@@ -77,47 +89,56 @@ public class TodoOverviewPart {
 
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL
 				| SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+		
 		Table table = viewer.getTable();
-		GridData gd_table = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-		gd_table.widthHint = 371;
-		table.setLayoutData(gd_table);
+		table.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
 
-		viewer.setContentProvider(ArrayContentProvider.getInstance());
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
 
 		TableViewerColumn column = new TableViewerColumn(viewer, SWT.NONE);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				Todo todo = (Todo) element;
-				return todo.getSummary();
-			}
-		});
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Summary");
 
 		column = new TableViewerColumn(viewer, SWT.NONE);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				Todo todo = (Todo) element;
-				return todo.getDescription();
-			}
-		});
 		column.getColumn().setWidth(100);
 		column.getColumn().setText("Description");
 
-		viewer.setInput(model.getTodos());
-
 		viewer.addFilter(new ViewerFilter() {
-
 			@Override
 			public boolean select(Viewer viewer, Object parentElement,
 					Object element) {
 				Todo todo = (Todo) element;
-				return todo.getSummary().toLowerCase().contains(searchString.toLowerCase())
-						|| todo.getDescription().toLowerCase().contains(searchString.toLowerCase());
+				return todo.getSummary().toLowerCase()
+						.contains(searchString.toLowerCase())
+						|| todo.getDescription().toLowerCase()
+								.contains(searchString.toLowerCase());
 			}
 		});
+		
+		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				IStructuredSelection selection = (IStructuredSelection) viewer.getSelection();
+				selectionService.setSelection(selection.getFirstElement());
+			}
+		});
+		
+		menuService.registerContextMenu(table, "com.example.e4.rcp.todo.popupmenu.table");
+
+		writableList = new WritableList(model.getTodos(), Todo.class);
+		ViewerSupport.bind(
+				viewer,
+				writableList,
+				BeanProperties.values(new String[] { Todo.FIELD_SUMMARY,
+						Todo.FIELD_DESCRIPTION }));
+	}
+
+	public void updateviewer(List<Todo> list) {
+		if (viewer != null) {
+			writableList.clear();
+			writableList.addAll(list);
+		}
 	}
 
 	@PreDestroy
@@ -127,6 +148,6 @@ public class TodoOverviewPart {
 
 	@Focus
 	private void setFocus() {
-		viewer.getControl().setFocus();
+		btnUpdate.setFocus();
 	}
 }

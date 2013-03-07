@@ -6,7 +6,11 @@
         <children xsi:type="basic:PartSashContainer" xmi:id="_XZcd0ITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.partsashcontainer.0" containerData="" horizontal="true">
           <children xsi:type="basic:PartSashContainer" xmi:id="_2Z8tIIWiEeKQeej3LtVhNQ" elementId="com.example.e4.rcp.todo.partsashcontainer.1" containerData="40">
             <children xsi:type="basic:PartStack" xmi:id="_aY1nIITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.partstack.0" containerData="85">
-              <children xsi:type="basic:Part" xmi:id="_kUszUITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="To-Dos"/>
+              <children xsi:type="basic:Part" xmi:id="_kUszUITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.part.todooverview" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoOverviewPart" label="To-Dos">
+                <menus xsi:type="menu:PopupMenu" xmi:id="_v_WHgIZuEeKa159VZaXErA" elementId="com.example.e4.rcp.todo.popupmenu.table" label="Table menu">
+                  <children xsi:type="menu:HandledMenuItem" xmi:id="_Ydi0oIZvEeKa159VZaXErA" elementId="com.example.e4.rcp.todo.handledmenuitem.removetodo" label="Remove todo" command="_nkjCYITiEeK4L5h2HhV0zQ"/>
+                </menus>
+              </children>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_touIEIWiEeKQeej3LtVhNQ" elementId="com.example.e4.rcp.todo.partstack.3" containerData="15">
               <children xsi:type="basic:Part" xmi:id="_B07qEIWgEeKQeej3LtVhNQ" elementId="com.example.e4.rcp.todo.part.tododeletionpart" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.TodoDeletionPart" label="Delete todos"/>
