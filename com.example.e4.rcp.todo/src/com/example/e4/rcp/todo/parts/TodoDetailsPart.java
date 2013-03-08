@@ -51,7 +51,7 @@ public class TodoDetailsPart {
 		Label lblSummary = new Label(parent, SWT.NONE);
 		lblSummary.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-		lblSummary.setText("Summary");
+		lblSummary.setText(Messages.TodoDetailsPart_0);
 
 		summary = new Text(parent, SWT.BORDER);
 		summary.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false,
@@ -60,7 +60,7 @@ public class TodoDetailsPart {
 		Label lblDescription = new Label(parent, SWT.NONE);
 		lblDescription.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-		lblDescription.setText("Description");
+		lblDescription.setText(Messages.TodoDetailsPart_1);
 
 		description = new Text(parent, SWT.BORDER | SWT.MULTI);
 		GridData gd_text_1 = new GridData(SWT.FILL, SWT.CENTER, true, false, 1,
@@ -71,7 +71,7 @@ public class TodoDetailsPart {
 		Label lblDueDate = new Label(parent, SWT.NONE);
 		lblDueDate.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false,
 				false, 1, 1));
-		lblDueDate.setText("Due Date");
+		lblDueDate.setText(Messages.TodoDetailsPart_2);
 
 		dateTime = new DateTime(parent, SWT.BORDER);
 		dateTime.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false,
@@ -79,7 +79,7 @@ public class TodoDetailsPart {
 		new Label(parent, SWT.NONE);
 
 		btnDone = new Button(parent, SWT.CHECK);
-		btnDone.setText("Done");
+		btnDone.setText(Messages.TodoDetailsPart_3);
 
 		listener = new IChangeListener() {
 			@Override
@@ -112,8 +112,8 @@ public class TodoDetailsPart {
 
 		if (dirty != null && dirty.isDirty()) {
 			if (MessageDialog
-					.openConfirm(null, "Unsaved changes",
-							"You have modified unsaved changes. Do you wish to save them?")) {
+					.openConfirm(null, Messages.TodoDetailsPart_4,
+							Messages.TodoDetailsPart_5)) {
 				save(dirty);
 			}
 		}

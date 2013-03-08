@@ -71,19 +71,19 @@ public class TodoDeletionPart {
 				if (sel.size() > 0) {
 					Todo firstElement = (Todo) sel.getFirstElement();
 					model.deleteTodo(firstElement.getId());
-					broker.post(MyEventConstants.TOPIC_TODO_DATA_UPDATE_DELETE, "Topic deleted");
+					broker.post(MyEventConstants.TOPIC_TODO_DATA_UPDATE_DELETE, Messages.TodoDeletionPart_0);
 					updateViewer();
 				}
 			}
 
 		});
 
-		button.setText("Delete selected");
+		button.setText(Messages.TodoDeletionPart_1);
 
 	}
 
 	private void updateViewer() {
-		Job job = new Job("Loading") {
+		Job job = new Job(Messages.TodoDeletionPart_2) {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {

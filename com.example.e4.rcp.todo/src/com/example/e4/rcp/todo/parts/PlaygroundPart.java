@@ -31,7 +31,7 @@ public class PlaygroundPart {
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		label = new Label(parent, SWT.NONE);
-		label.setImage(loader.loadImage(this.getClass(), "images/vogella.png"));
+		label.setImage(loader.loadImage(this.getClass(), Messages.PlaygroundPart_0));
 
 		focus = text;
 		

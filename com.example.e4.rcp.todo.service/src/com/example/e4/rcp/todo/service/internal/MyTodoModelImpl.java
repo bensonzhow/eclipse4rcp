@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import org.eclipse.e4.core.services.events.IEventBroker;
 
 import com.example.e4.rcp.todo.event.MyEventConstants;
@@ -15,6 +17,7 @@ public class MyTodoModelImpl implements ITodoModel {
 
 	static int current = 1;
 	private List<Todo> model;
+	@Inject 
 	private IEventBroker broker;
 
 	public MyTodoModelImpl() {

@@ -50,7 +50,7 @@ public class TodoOverviewPart {
 	@Inject 
 	private UISynchronize sync;
 	private TableViewer viewer;
-	private String searchString = "";
+	private String searchString = Messages.TodoOverviewPart_0;
 	private WritableList writableList;
 	private Button btnUpdate;
 
@@ -61,11 +61,11 @@ public class TodoOverviewPart {
 		btnUpdate = new Button(parent, SWT.NONE);
 		btnUpdate.setLayoutData(new GridData(SWT.CENTER, SWT.CENTER, false,
 				false, 1, 1));
-		btnUpdate.setText("Update");
+		btnUpdate.setText(Messages.TodoOverviewPart_1);
 		btnUpdate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				Job job = new Job("Loading") {
+				Job job = new Job(Messages.TodoOverviewPart_2) {
 					@Override
 					protected IStatus run(IProgressMonitor monitor) {
 						final List<Todo> todos = model.getTodos();
@@ -87,7 +87,7 @@ public class TodoOverviewPart {
 
 		search.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false,
 				1, 1));
-		search.setMessage("Search");
+		search.setMessage(Messages.TodoOverviewPart_3);
 
 		search.addModifyListener(new ModifyListener() {
 
@@ -104,7 +104,7 @@ public class TodoOverviewPart {
 			public void widgetDefaultSelected(SelectionEvent e) {
 				if (e.detail == SWT.CANCEL) {
 					Text text = (Text) e.getSource();
-					text.setText("");
+					text.setText(Messages.TodoOverviewPart_4);
 				}
 			}
 		});
@@ -120,11 +120,11 @@ public class TodoOverviewPart {
 
 		TableViewerColumn column = new TableViewerColumn(viewer, SWT.NONE);
 		column.getColumn().setWidth(100);
-		column.getColumn().setText("Summary");
+		column.getColumn().setText(Messages.TodoOverviewPart_5);
 
 		column = new TableViewerColumn(viewer, SWT.NONE);
 		column.getColumn().setWidth(100);
-		column.getColumn().setText("Description");
+		column.getColumn().setText(Messages.TodoOverviewPart_6);
 
 		viewer.addFilter(new ViewerFilter() {
 			@Override
@@ -146,7 +146,7 @@ public class TodoOverviewPart {
 			}
 		});
 		
-		menuService.registerContextMenu(table, "com.example.e4.rcp.todo.popupmenu.table");
+		menuService.registerContextMenu(table, Messages.TodoOverviewPart_7);
 
 		writableList = new WritableList(model.getTodos(), Todo.class);
 		ViewerSupport.bind(
