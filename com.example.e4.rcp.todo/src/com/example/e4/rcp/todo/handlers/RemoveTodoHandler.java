@@ -1,4 +1,4 @@
-package com.examples.e4.rcp.todo.handlers;
+package com.example.e4.rcp.todo.handlers;
 
 import javax.inject.Named;
 
@@ -15,12 +15,12 @@ public class RemoveTodoHandler {
 
 	@Execute
 	public void execute(ITodoModel model,
-			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo,
-			Shell shell) {
+			@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Todo todo, Shell shell) {
 		if (todo != null) {
 			model.deleteTodo(todo.getId());
 		} else {
-			MessageDialog.openInformation(shell, "Deletion not possible", "No todo selected");
+			MessageDialog.openInformation(shell, "Deletion not possible",
+					"No todo selected");
 		}
 	}
 }

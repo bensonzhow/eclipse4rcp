@@ -8,7 +8,14 @@ import javax.inject.Inject;
 
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.list.WritableList;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
+import org.eclipse.e4.ui.di.UIEventTopic;
+import org.eclipse.e4.ui.di.UISynchronize;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.e4.ui.workbench.swt.modeling.EMenuService;
 import org.eclipse.jface.databinding.viewers.ViewerSupport;
@@ -31,14 +38,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
 
+import com.example.e4.rcp.todo.event.MyEventConstants;
 import com.example.e4.rcp.todo.model.ITodoModel;
 import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoOverviewPart {
-	@Inject
-	ESelectionService selectionService;
-	@Inject
+	@Inject 
+	private ESelectionService selectionService;
+	@Inject 
 	private ITodoModel model;
+	@Inject 
+	private UISynchronize sync;
 	private TableViewer viewer;
 	private String searchString = "";
 	private WritableList writableList;
@@ -55,8 +65,20 @@ public class TodoOverviewPart {
 		btnUpdate.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				List<Todo> todos = model.getTodos();
-				updateviewer(todos);
+				Job job = new Job("Loading") {
+					@Override
+					protected IStatus run(IProgressMonitor monitor) {
+						final List<Todo> todos = model.getTodos();
+						sync.asyncExec(new Runnable() {
+							@Override
+							public void run() {
+								updateViewer(todos);
+							}
+						});
+						return Status.OK_STATUS;
+					}
+				};
+				job.schedule();
 			}
 		});
 
@@ -134,10 +156,18 @@ public class TodoOverviewPart {
 						Todo.FIELD_DESCRIPTION }));
 	}
 
-	public void updateviewer(List<Todo> list) {
+	public void updateViewer(List<Todo> list) {
 		if (viewer != null) {
 			writableList.clear();
 			writableList.addAll(list);
+		}
+	}
+	
+	@Inject
+	@Optional
+	private void getNotified(@UIEventTopic(MyEventConstants.TOPIC_TODO_DATA_UPDATE) String topic) {
+		if (viewer != null) {
+			updateViewer(model.getTodos());
 		}
 	}
 

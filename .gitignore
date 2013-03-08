@@ -7,3 +7,4 @@ nbproject/private/
 *.out
 *.classpath
 .metadata
+org.eclipse.jdt.core.prefs

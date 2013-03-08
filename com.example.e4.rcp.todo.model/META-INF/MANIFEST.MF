@@ -4,7 +4,8 @@ Bundle-Name: Model
 Bundle-SymbolicName: com.example.e4.rcp.todo.model
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: EXAMPLE
-Require-Bundle: org.eclipse.core.runtime
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.e4.core.services;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: com.example.e4.rcp.todo.model

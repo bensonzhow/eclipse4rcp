@@ -22,8 +22,15 @@
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_iSzNAITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.partstack.2">
               <children xsi:type="basic:Part" xmi:id="_wEEkgITDEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.part.playground" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.parts.PlaygroundPart" label="Playground"/>
+              <children xsi:type="advanced:Placeholder" xmi:id="_u4N_wIcQEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.placeholder.0" ref="_iYSUUIcQEeKas6HM2E1wBQ"/>
             </children>
           </children>
+        </children>
+      </children>
+      <children xsi:type="advanced:Perspective" xmi:id="_zwPUEIcPEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.perspective.manager" label="Manager">
+        <children xsi:type="basic:PartStack" xmi:id="_Ah-hMIcQEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.partstack.4">
+          <children xsi:type="basic:Part" xmi:id="_BnR8YIcQEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.part.0" label="Manager monitor"/>
+          <children xsi:type="advanced:Placeholder" xmi:id="_z1cHsIcQEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.placeholder.1" ref="_iYSUUIcQEeKas6HM2E1wBQ"/>
         </children>
       </children>
     </children>
@@ -39,19 +46,24 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_-icFAITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handledmenuitem.4" label="Test" command="_p6SxwITiEeK4L5h2HhV0zQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_NkgvAIZCEeKaevGl_MJvsQ" elementId="com.example.e4.rcp.todo.handledmenuitem.5" label="Enter credentials" command="_Vl5A8IZBEeKaevGl_MJvsQ"/>
       </children>
+      <children xsi:type="menu:Menu" xmi:id="_zp-pIIcREeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.menu.perspective" label="Perspectives">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_zp-pIYcREeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.handledmenuitem.switchperspective" label="Switch perspective" command="_39aNMIcREeKas6HM2E1wBQ"/>
+      </children>
     </mainMenu>
+    <sharedElements xsi:type="basic:Part" xmi:id="_iYSUUIcQEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.part.1" label="Lazy table"/>
     <trimBars xmi:id="_F91fkITkEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.trimbar.0">
       <children xsi:type="menu:ToolBar" xmi:id="_IgZi8ITkEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.toolbar.0">
         <children xsi:type="menu:HandledToolItem" xmi:id="_KdrvAITkEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handledtoolitem.0" label="Save" command="_iQJJgITiEeK4L5h2HhV0zQ"/>
       </children>
     </trimBars>
   </children>
-  <handlers xmi:id="_6DWK4ITgEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.exit" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.ExitHandler" command="_zG7LUITgEeK4L5h2HhV0zQ"/>
-  <handlers xmi:id="_Oq8PEITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.save" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.SaveAllHandler" command="_iQJJgITiEeK4L5h2HhV0zQ"/>
-  <handlers xmi:id="_R-Go8ITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.new" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.NewTodoHandler" command="_lEQP4ITiEeK4L5h2HhV0zQ"/>
-  <handlers xmi:id="_UIakYITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.remove" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.RemoveTodoHandler" command="_nkjCYITiEeK4L5h2HhV0zQ"/>
-  <handlers xmi:id="_Wqm0UITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.test" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.TestHandler" command="_p6SxwITiEeK4L5h2HhV0zQ"/>
-  <handlers xmi:id="_HaqRUIZBEeKaevGl_MJvsQ" elementId="com.example.e4.rcp.todo.handler.entercredentials" contributionURI="bundleclass://com.example.e4.rcp.todo/com.examples.e4.rcp.todo.handlers.EnterCredentialsHandler" command="_Vl5A8IZBEeKaevGl_MJvsQ"/>
+  <handlers xmi:id="_6DWK4ITgEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.exit" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.ExitHandler" command="_zG7LUITgEeK4L5h2HhV0zQ"/>
+  <handlers xmi:id="_Oq8PEITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.save" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.SaveAllHandler" command="_iQJJgITiEeK4L5h2HhV0zQ"/>
+  <handlers xmi:id="_R-Go8ITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.new" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.NewTodoHandler" command="_lEQP4ITiEeK4L5h2HhV0zQ"/>
+  <handlers xmi:id="_UIakYITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.remove" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.RemoveTodoHandler" command="_nkjCYITiEeK4L5h2HhV0zQ"/>
+  <handlers xmi:id="_Wqm0UITjEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.handler.test" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.TestHandler" command="_p6SxwITiEeK4L5h2HhV0zQ"/>
+  <handlers xmi:id="_HaqRUIZBEeKaevGl_MJvsQ" elementId="com.example.e4.rcp.todo.handler.entercredentials" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.EnterCredentialsHandler" command="_Vl5A8IZBEeKaevGl_MJvsQ"/>
+  <handlers xmi:id="_IqYg0IcSEeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.handler.switchperspective" contributionURI="bundleclass://com.example.e4.rcp.todo/com.example.e4.rcp.todo.handlers.PerspectiveSwitchHandler" command="_39aNMIcREeKas6HM2E1wBQ"/>
   <bindingTables xmi:id="__NDn8ITmEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.bindingtable.0" bindingContext="_7W2ycITmEeK4L5h2HhV0zQ">
     <bindings xmi:id="_CyW6sITnEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.keybinding.0" keySequence="M1+Q" command="_zG7LUITgEeK4L5h2HhV0zQ"/>
     <bindings xmi:id="_bcIFwITnEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.keybinding.1" keySequence="M1+S" command="_iQJJgITiEeK4L5h2HhV0zQ"/>
@@ -63,6 +75,7 @@
   <commands xmi:id="_nkjCYITiEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.remove" commandName="Remove Todo"/>
   <commands xmi:id="_p6SxwITiEeK4L5h2HhV0zQ" elementId="com.example.e4.rcp.todo.test" commandName="For testing"/>
   <commands xmi:id="_Vl5A8IZBEeKaevGl_MJvsQ" elementId="com.example.e4.rcp.todo.command.entercredentials" commandName="Enter credentials"/>
+  <commands xmi:id="_39aNMIcREeKas6HM2E1wBQ" elementId="com.example.e4.rcp.todo.command.switchperspective" commandName="Switch perspective"/>
   <addons xmi:id="_1XMV4YTBEeK4L5h2HhV0zQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_1XMV4oTBEeK4L5h2HhV0zQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_1XMV44TBEeK4L5h2HhV0zQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

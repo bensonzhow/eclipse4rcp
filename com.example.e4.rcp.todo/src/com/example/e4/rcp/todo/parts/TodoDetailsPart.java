@@ -34,8 +34,8 @@ import com.example.e4.rcp.todo.model.Todo;
 
 public class TodoDetailsPart {
 	private Control focus;
-	@Inject
-	private MDirtyable dirty;
+	@Inject MDirtyable dirty;
+	@Inject ITodoModel model;
 	private Todo todo;
 	private Text summary;
 	private Text description;
@@ -110,13 +110,11 @@ public class TodoDetailsPart {
 			return;
 		}
 
-		if (dirty.isDirty()) {
+		if (dirty != null && dirty.isDirty()) {
 			if (MessageDialog
 					.openConfirm(null, "Unsaved changes",
-							"You have modified unsaved changes. Stop to save?")) {
-				return;
-			} else {
-				dirty.setDirty(false);
+							"You have modified unsaved changes. Do you wish to save them?")) {
+				save(dirty);
 			}
 		}
 		this.todo = todo;
@@ -171,7 +169,7 @@ public class TodoDetailsPart {
 	}
 
 	@Persist
-	public void save(MDirtyable dirty, ITodoModel model) {
+	private void save(MDirtyable dirty) {
 		model.saveTodo(todo);
 		dirty.setDirty(false);
 	}

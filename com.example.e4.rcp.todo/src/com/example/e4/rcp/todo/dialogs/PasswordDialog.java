@@ -3,9 +3,12 @@ package com.example.e4.rcp.todo.dialogs;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -18,6 +21,7 @@ public class PasswordDialog extends Dialog {
 	private Text passwordText;
 	private String user = "";
 	private String password = "";
+	private boolean storePassword;
 
 	/**
 	 * Create the dialog.
@@ -56,10 +60,21 @@ public class PasswordDialog extends Dialog {
 		lblNewLabel.setLayoutData(gd_lblNewLabel);
 		lblNewLabel.setText("Password:");
 
-		passwordText = new Text(container, SWT.BORDER);
+		passwordText = new Text(container, SWT.BORDER | SWT.PASSWORD);
 		passwordText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false, 1, 1));
 		passwordText.setText(password);
+		new Label(container, SWT.NONE);
+		
+		final Button button = new Button(container, SWT.CHECK);
+		button.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				storePassword = button.getSelection();
+			}
+		});
+		button.setText("Save credentials");
 		return container;
 	}
 
@@ -106,4 +121,7 @@ public class PasswordDialog extends Dialog {
 		this.password = password;
 	}
 	
+	public boolean storePassword() {
+		return this.storePassword;
+	}
 }
